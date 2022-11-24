@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
 import { FaCalendarAlt, FaHome, FaUserAlt, FaUserMd, FaUserPlus } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
-import Header from "../../Components/Pages/Header/Header";
+import Header from "../../Components/pages/Header/Header";
+
 import { AuthContext } from "../../Context/UserContext";
 
-const Dashboard = () => {
+const DashboardLayout = () => {
     const { user } = useContext(AuthContext);
   return (
     <div>
-      <Header />
+      <Header></Header>
       <div className="drawer drawer-mobile">
         <input
           id="dashboard-drawer"
@@ -22,8 +23,14 @@ const Dashboard = () => {
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
 
           <ul className="menu p-4 w-80 bg-white rounded-t-md text-base-content">
-            <img src={user?.photoURL} className="w-20 h-20 rounded-full mx-auto border border-primary drop-shadow-md shadow-md" alt="" />
-            <h3 className="text-center text-lg font-bold my-3">{user?.displayName}</h3>
+            <img
+              src={user?.photoURL}
+              className="w-20 h-20 rounded-full mx-auto border border-primary drop-shadow-md shadow-md"
+              alt=""
+            />
+            <h3 className="text-center text-lg font-bold my-3">
+              {user?.displayName}
+            </h3>
             <li className="hover:bg-primary rounded-md hover:text-gray-200">
               <Link to="/dashboard">
                 <FaHome className="w-6 h-6 text-gray-500"></FaHome>
@@ -33,7 +40,7 @@ const Dashboard = () => {
             <li className="hover:bg-primary rounded-md hover:text-gray-200">
               <Link to="/dashboard/appointment">
                 <FaCalendarAlt className="w-6 h-6 text-gray-500"></FaCalendarAlt>
-                <span class="ml-3">My Appoint</span>
+                <span class="ml-3">My products</span>
               </Link>
             </li>
             <li className="hover:bg-primary rounded-md hover:text-gray-200">
@@ -43,15 +50,15 @@ const Dashboard = () => {
               </Link>
             </li>
             <li className="hover:bg-primary rounded-md hover:text-gray-200">
-              <Link to="/dashboard/adddoctors">
+              <Link to="/dashboard/addproducts">
                 <FaUserMd className="w-6 h-6 text-gray-500"></FaUserMd>
-                <span class="ml-3">Add Doctor</span>
+                <span class="ml-3">Add Product</span>
               </Link>
             </li>
             <li className="hover:bg-primary rounded-md hover:text-gray-200">
-              <Link to="/dashboard/managedoctors">
+              <Link to="/dashboard/myproducts">
                 <FaUserPlus className="w-6 h-6 text-gray-500"></FaUserPlus>
-                <span class="ml-3">Manage doctors</span>
+                <span class="ml-3">My Products</span>
               </Link>
             </li>
           </ul>
@@ -61,4 +68,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardLayout;
