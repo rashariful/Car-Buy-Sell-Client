@@ -1,5 +1,6 @@
 import React from 'react';
 import Banner from '../Banner/Banner';
+import Future from '../Future/Future';
 import Products from '../Products/Products';
 
 const Home = () => {
@@ -13,6 +14,9 @@ const Home = () => {
             All cars here
           </h3>
           <Products></Products>
+        </section>
+        <section>
+           <Future></Future>
         </section>
       </div>
     );
