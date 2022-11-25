@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { FaCalendarAlt, FaHome, FaUserAlt, FaUserMd, FaUserPlus } from "react-icons/fa";
+import { FaBoxOpen, FaCalendarAlt, FaCartPlus, FaHome, FaUserAlt, FaUserMd, FaUserPlus } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
 import Header from "../../Components/pages/Header/Header";
 
@@ -51,13 +51,13 @@ const DashboardLayout = () => {
             </li>
             <li className="hover:bg-primary rounded-md hover:text-gray-200">
               <Link to="/dashboard/addproducts">
-                <FaUserMd className="w-6 h-6 text-gray-500"></FaUserMd>
+                <FaCartPlus className="w-6 h-6 text-gray-500"></FaCartPlus>
                 <span class="ml-3">Add Product</span>
               </Link>
             </li>
             <li className="hover:bg-primary rounded-md hover:text-gray-200">
               <Link to="/dashboard/myproducts">
-                <FaUserPlus className="w-6 h-6 text-gray-500"></FaUserPlus>
+                <FaBoxOpen className="w-6 h-6 text-gray-500"></FaBoxOpen>
                 <span class="ml-3">My Products</span>
               </Link>
             </li>

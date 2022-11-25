@@ -17,8 +17,7 @@ const AddProducts = () => {
   } = useForm();
 
   const handleLoginSubmit = (data) => {
-    const email = user?.email;
-    const user = user?.displayName;
+   
 
     const image = data.img[0];
     const formData = new FormData();
@@ -33,17 +32,15 @@ const AddProducts = () => {
         if (imgdata.success) {
           
           const products = {
-            name: data.name,
-            email,
-            user,
+            title: data.title,
             phone: data.number,
             brand: data.brand,
-            price: data.price,
-            oldPrice: data.oldPrice,
+            resalePrice: data.resalePrice,
+            originalPrice: data.originalPrice,
             location: data.location,
             time: time,
             condition: data.condition,
-            purchaseYear: data.purchase,
+            useYear: data.useYear,
             fuelType: data.fuelType,
             description: data.description,
             img: imgdata.data.url,
@@ -82,16 +79,16 @@ const AddProducts = () => {
             <div className="flex flex-col gap-4 p-4 md:p-8">
               <div>
                 <label className="inline-block text-gray-800 text-sm sm:text-base mb-2">
-                  Car Name
+                  Title
                 </label>
                 <input
                   className="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
-                  {...register("name", {
+                  {...register("title", {
                     required: "Name is required",
                   })}
                 />
-                {errors.name && (
-                  <p className="text-red-500">{errors.name.message}</p>
+                {errors.title && (
+                  <p className="text-red-500">{errors.title.message}</p>
                 )}
               </div>
 
@@ -148,7 +145,6 @@ const AddProducts = () => {
                   <option>Toyota</option>
                   <option>Honda</option>
                   <option>Tesla</option>
-                  <option>Greedo</option>
                 </select>
 
                 {errors.brand && (
@@ -158,46 +154,46 @@ const AddProducts = () => {
 
               <div>
                 <label className="inline-block text-gray-800 text-sm sm:text-base mb-2">
-                  Price
+                  Resale Price
                 </label>
                 <input
                   className="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
-                  {...register("price", {
-                    required: "price is required",
+                  {...register("resalePrice", {
+                    required: "Resale price is required",
                   })}
                 />
-                {errors.price && (
-                  <p className="text-red-500">{errors.price.message}</p>
+                {errors.resalePrice && (
+                  <p className="text-red-500">{errors.resalePrice.message}</p>
                 )}
               </div>
 
               <div>
                 <label className="inline-block text-gray-800 text-sm sm:text-base mb-2">
-                  old Price
+                  Original Price
                 </label>
                 <input
                   className="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
-                  {...register("oldPrice", {
-                    required: "oldPrice is required",
+                  {...register("originalPrice", {
+                    required: "Original price is required",
                   })}
                 />
-                {errors.oldPrice && (
-                  <p className="text-red-500">{errors.oldPrice.message}</p>
+                {errors.originalPrice && (
+                  <p className="text-red-500">{errors.originalPrice.message}</p>
                 )}
               </div>
 
               <div>
                 <label className="inline-block text-gray-800 text-sm sm:text-base mb-2">
-                  Year of Purchase
+                  Years of use
                 </label>
                 <input
                   className="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
-                  {...register("purchase ", {
+                  {...register("useYear", {
                     required: "purchase year is required",
                   })}
                 />
-                {errors.purchase && (
-                  <p className="text-red-500">{errors.purchase.message}</p>
+                {errors.useYear && (
+                  <p className="text-red-500">{errors.useYear.message}</p>
                 )}
               </div>
 

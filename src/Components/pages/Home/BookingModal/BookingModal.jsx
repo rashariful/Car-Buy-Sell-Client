@@ -1,9 +1,13 @@
 import React from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../../../Context/UserContext';
+import swal from "sweetalert";
+import { useNavigate } from 'react-router-dom';
+
 
 const BookingModal = ({ mProducts }) => {
     const {user} = useContext(AuthContext)
+    const navigate = useNavigate()
    
 
    const handleSubmit = (e) => {
@@ -12,8 +16,8 @@ const BookingModal = ({ mProducts }) => {
      const name = form.name.value;
      const email = form.email.value;
      const phone = form.phone.value;
-     const price = mProducts.price
-     const title = mProducts.name
+     const price = mProducts.resalePrice;
+     const title = mProducts.title
      const description = form.description.value;
 
 
@@ -35,13 +39,19 @@ const BookingModal = ({ mProducts }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+
+          swal({
+            title: `${title} Booking Successful!`,
+            icon: "success",
+            button: "ok",
+          });
         });
 
-      console.log(booking);
+
     //   refetch();
       form.reset();
     //   setTreatment(null);
+    navigate("/dashboard/bookings");
 
    };
 
@@ -60,9 +70,11 @@ const BookingModal = ({ mProducts }) => {
             ✕
           </label>
           <h3 className="text-lg font-bold my-10 text-center">
-            {mProducts?.name}
+            {mProducts?.title}
           </h3>
-          <h3 className="font-bold my-5 text-center">{mProducts?.price}</h3>
+          <h3 className="font-bold my-5 text-center">
+            {mProducts?.resalePrice}
+          </h3>
 
           <form onSubmit={handleSubmit} className="grid gap-3">
             <input

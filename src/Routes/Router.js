@@ -10,6 +10,7 @@ import AddProducts from "../Components/Dashboard/AddProducts/AddProducts";
 import MyProducts from '../Components/Dashboard/MyProducts/MyProducts'
 import MyBookings from "../Components/Dashboard/MyBookings/MyBookings";
 import Blog from "../Components/pages/Blog/Blog";
+import Users from "../Components/Dashboard/Users/Users";
 
 
 
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/bookings',
         element: <MyBookings></MyBookings>
+      },
+      {
+        path: '/dashboard/users',
+        element: <Users></Users>
       },
     ]
   }

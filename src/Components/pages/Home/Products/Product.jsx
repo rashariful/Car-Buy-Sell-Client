@@ -3,10 +3,10 @@ import React from 'react';
 const Product = ({ product, setMproudcts }) => {
   const {
     img,
-    name,
+    title,
     description,
-    price,
-    oldPrice,
+    resalePrice,
+    originalPrice,
     brand,
     location,
     time,
@@ -27,7 +27,7 @@ const Product = ({ product, setMproudcts }) => {
                 href="#"
                 class="text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"
               >
-                {name}
+                {title}
               </a>
               <span class="text-gray-500">{brand}</span>
               <span class="text-gray-500">{location}</span>
@@ -37,8 +37,8 @@ const Product = ({ product, setMproudcts }) => {
             </div>
 
             <div class="flex flex-col items-end">
-              <span class="text-gray-600 lg:text-lg font-bold">${price}</span>
-              <span class="text-red-500 text-sm line-through">${oldPrice}</span>
+              <span class="text-gray-600 lg:text-lg font-bold">${resalePrice}</span>
+              <span class="text-red-500 text-sm line-through">${originalPrice}</span>
             </div>
           </div>
           <p>{description.slice(0, 50)}</p>

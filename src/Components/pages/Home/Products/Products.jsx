@@ -2,10 +2,11 @@ import Product from './Product';
 import { useQuery } from "@tanstack/react-query";
 import BookingModal from '../BookingModal/BookingModal';
 import { useState } from 'react';
+import Loader from '../../Loader/Loader';
 
 const Products = () => {
   const [mProducts, setMproudcts] = useState([])
-      const { data: products=[] } = useQuery({
+      const { data: products=[], isLoading } = useQuery({
         queryKey: ["products"],
         queryFn: () =>
           fetch(`http://localhost:5000/products`).then(
@@ -13,7 +14,9 @@ const Products = () => {
           ),
       });
  
-    console.log(products);
+  if(isLoading){
+    return <Loader></Loader>
+  }
 
   
 

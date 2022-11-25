@@ -18,7 +18,7 @@ const MyProducts = () => {
         return data;
       },
     });
-
+ console.log(products);
     const handleDelete = (id) => {
       fetch(`http://localhost:5000/products/${id}`, {
         method: "DELETE",
@@ -39,7 +39,7 @@ const MyProducts = () => {
             <table className="table w-full">
               <thead>
                 <tr>
-                  <th></th>
+                  <th>No</th>
                   <th>Photo</th>
                   <th>Product Name</th>
                   <th>brand Name</th>
@@ -59,10 +59,10 @@ const MyProducts = () => {
                         alt="doctor.name"
                       />
                     </td>
-                    <td>{product?.name}</td>
-                    <td>{product?.brandName}</td>
+                    <td>{product?.title}</td>
+                    <td>{product?.brand}</td>
                     <td>{product?.condition}</td>
-                    <td>{product?.price}</td>
+                    <td>{product?.originalPrice}</td>
                     <td>
                       <button
                         onClick={() => handleDelete(product._id)}
