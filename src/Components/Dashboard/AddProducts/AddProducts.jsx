@@ -2,9 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { FaUpload } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../../../Context/UserContext";
 
 const AddProducts = () => {
   const imgHotKey = "f6658319c0ecbf033082c3f56b5e6948";
+  const {user} = useContext(AuthContext)
   const navigate = useNavigate();
   const time = new Date()
   const {
@@ -14,7 +17,9 @@ const AddProducts = () => {
   } = useForm();
 
   const handleLoginSubmit = (data) => {
-    console.log(data);
+    const email = user?.email;
+    const user = user?.displayName;
+
     const image = data.img[0];
     const formData = new FormData();
     formData.append("image", image);
@@ -26,18 +31,19 @@ const AddProducts = () => {
       .then((res) => res.json())
       .then((imgdata) => {
         if (imgdata.success) {
-          console.log(imgdata.data.url);
-
+          
           const products = {
             name: data.name,
+            email,
+            user,
             phone: data.number,
-            brandName: data.brandName,
+            brand: data.brand,
             price: data.price,
             oldPrice: data.oldPrice,
             location: data.location,
             time: time,
             condition: data.condition,
-            purchaseYear: data.purchaseYear,
+            purchaseYear: data.purchase,
             fuelType: data.fuelType,
             description: data.description,
             img: imgdata.data.url,
@@ -134,8 +140,8 @@ const AddProducts = () => {
                   Brand Name
                 </label>
                 <select
-                  {...register("brandName", {
-                    required: "brandName is required",
+                  {...register("brand", {
+                    required: "brand Name is required",
                   })}
                   className="select w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
                 >
@@ -145,8 +151,8 @@ const AddProducts = () => {
                   <option>Greedo</option>
                 </select>
 
-                {errors.brandName && (
-                  <p className="text-red-500">{errors.brandName.message}</p>
+                {errors.brand && (
+                  <p className="text-red-500">{errors.brand.message}</p>
                 )}
               </div>
 
@@ -186,12 +192,12 @@ const AddProducts = () => {
                 </label>
                 <input
                   className="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
-                  {...register("purchaseYear ", {
+                  {...register("purchase ", {
                     required: "purchase year is required",
                   })}
                 />
-                {errors.purchaseYear && (
-                  <p className="text-red-500">{errors.purchaseYear.message}</p>
+                {errors.purchase && (
+                  <p className="text-red-500">{errors.purchase.message}</p>
                 )}
               </div>
 
@@ -241,7 +247,7 @@ const AddProducts = () => {
                 <div className="flex justify-center gap-4">
                   <div className="form-control">
                     <label className="label cursor-pointer">
-                      <span className="label-text">CNG</span>
+                      <span className="label-text mr-3">CNG</span>
                       <input
                         {...register("fuelType")}
                         type="checkbox"
@@ -252,7 +258,7 @@ const AddProducts = () => {
                   </div>
                   <div className="form-control">
                     <label className="label cursor-pointer">
-                      <span className="label-text">Diesel</span>
+                      <span className="label-text mr-3">Diesel</span>
                       <input
                         {...register("fuelType")}
                         type="checkbox"
@@ -263,7 +269,7 @@ const AddProducts = () => {
                   </div>
                   <div className="form-control">
                     <label className="label cursor-pointer">
-                      <span className="label-text">Petrol</span>
+                      <span className="label-text mr-3">Petrol</span>
                       <input
                         {...register("fuelType")}
                         type="checkbox"
@@ -274,7 +280,7 @@ const AddProducts = () => {
                   </div>
                   <div className="form-control">
                     <label className="label cursor-pointer">
-                      <span className="label-text">Octane</span>
+                      <span className="label-text mr-3">Octane</span>
                       <input
                         {...register("fuelType")}
                         type="checkbox"

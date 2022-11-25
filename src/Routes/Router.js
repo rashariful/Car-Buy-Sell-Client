@@ -8,6 +8,8 @@ import Main from "../Layout/Main/Main";
 import DashboardHome from "../Components/Dashboard/DashboardHome/DashboardHome";
 import AddProducts from "../Components/Dashboard/AddProducts/AddProducts";
 import MyProducts from '../Components/Dashboard/MyProducts/MyProducts'
+import MyBookings from "../Components/Dashboard/MyBookings/MyBookings";
+import Blog from "../Components/pages/Blog/Blog";
 
 
 
@@ -25,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <Home></Home>,
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>
       },
 
       {
@@ -52,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/myproducts',
         element: <MyProducts></MyProducts>
+      },
+      {
+        path: '/dashboard/bookings',
+        element: <MyBookings></MyBookings>
       },
     ]
   }

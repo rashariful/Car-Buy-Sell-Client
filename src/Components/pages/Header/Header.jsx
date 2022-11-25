@@ -5,7 +5,6 @@ import { AuthContext } from "../../../Context/UserContext";
 
 const Header = () => {
   const { user, logoutUser } = useContext(AuthContext);
-  console.log(user);
   const menuItems = (
     <React.Fragment>
       <li>
@@ -18,7 +17,7 @@ const Header = () => {
         <Link to="/">About</Link>
       </li>
       <li>
-        <Link to="/">Blogs</Link>
+        <Link to="/blog">Blog</Link>
       </li>
 
       <li></li>

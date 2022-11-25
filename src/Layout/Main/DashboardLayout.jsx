@@ -38,9 +38,9 @@ const DashboardLayout = () => {
               </Link>
             </li>
             <li className="hover:bg-primary rounded-md hover:text-gray-200">
-              <Link to="/dashboard/appointment">
+              <Link to="/dashboard/bookings">
                 <FaCalendarAlt className="w-6 h-6 text-gray-500"></FaCalendarAlt>
-                <span class="ml-3">My products</span>
+                <span class="ml-3">My Bookings</span>
               </Link>
             </li>
             <li className="hover:bg-primary rounded-md hover:text-gray-200">
