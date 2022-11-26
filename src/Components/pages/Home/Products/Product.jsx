@@ -49,7 +49,7 @@ const Product = ({ product, setMproudcts }) => {
               htmlFor="my-modal-3"
               className="btn btn-primary"
             >
-              Buy Now
+            Book Now
             </label>
           </div>
         </div>

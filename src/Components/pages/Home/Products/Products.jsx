@@ -8,28 +8,26 @@ import { Link } from 'react-router-dom';
 const Products = ({product}) => {
 console.log(product);
 
-  const [mProducts, setMproudcts] = useState([])
-      const { data: products=[], isLoading } = useQuery({
-        queryKey: ["products"],
-        queryFn: () =>
-          fetch(`http://localhost:5000/products`).then(
-            (res) => res.json()
-          ),
-      });
+  // const [mProducts, setMproudcts] = useState([])
+  //     const { data: products=[], isLoading } = useQuery({
+  //       queryKey: ["products"],
+  //       queryFn: () =>
+  //         fetch(`http://localhost:5000/products`).then(
+  //           (res) => res.json()
+  //         ),
+  //     });
  
-  if(isLoading){
-    return <Loader></Loader>
-  }
+  // if(isLoading){
+  //   return <Loader></Loader>
+  // }
 
   
 
     return (
       <div>
         <div className="grid gap-6 mt-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-16">
-          <Link to="/category/toyota">
-            toyota
-          </Link>
-          {products?.map((product) => (
+         
+          {/* {products?.map((product) => (
             <Product
               key={product._id}
               product={product}
@@ -38,7 +36,7 @@ console.log(product);
           ))}
         </div>
         <div>
-          <BookingModal mProducts={mProducts}></BookingModal>
+          <BookingModal mProducts={mProducts}></BookingModal> */}
         </div>
       </div>
     );

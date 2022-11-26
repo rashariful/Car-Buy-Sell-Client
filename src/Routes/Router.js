@@ -25,18 +25,21 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+        loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brand}`)
       },
       {
-        path: "/home",
+        path: "/home/:brand",
         element: <Home></Home>,
-
-      },
-      {
-        path: "/category/:brand",
-        element: <Category></Category>,
         loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brand}`)
 
       },
+
+      // {
+      //   path: "/category/:brand",
+      //   element: <Category></Category>,
+      //   // loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brand}`)
+
+      // },
       {
         path: "/blog",
         element: <Blog></Blog>
