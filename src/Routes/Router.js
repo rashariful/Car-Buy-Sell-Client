@@ -11,6 +11,7 @@ import MyProducts from '../Components/Dashboard/MyProducts/MyProducts'
 import MyBookings from "../Components/Dashboard/MyBookings/MyBookings";
 import Blog from "../Components/pages/Blog/Blog";
 import Users from "../Components/Dashboard/Users/Users";
+import Category from "../Components/pages/Category/Category";
 
 
 
@@ -28,6 +29,13 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <Home></Home>,
+
+      },
+      {
+        path: "/category/:brand",
+        element: <Category></Category>,
+        loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brand}`)
+
       },
       {
         path: "/blog",
