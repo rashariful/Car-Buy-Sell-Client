@@ -5,6 +5,7 @@ import BookingModal from "../BookingModal/BookingModal";
 import Future from "../Future/Future";
 import Product from "../Products/Product";
 import { FaCar } from "react-icons/fa";
+import Advertise from "../Advertise/Advertise";
 
 const Home = () => {
   const [mProducts, setMproudcts] = useState([]);
@@ -61,6 +62,24 @@ const Home = () => {
         </div>
       </section>
       <BookingModal mProducts={mProducts}></BookingModal>
+      <section>
+        <div className="flex flex-col text-center w-full mb-20">
+          <h2 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
+            All the advertisement product post here
+          </h2>
+          <p className=" text-gray-500 mt-3">
+            You can add your products on this section.
+          </p>
+        </div>
+        
+        {products.map((product) => (
+          <Advertise
+            product={product}
+            key={product._id}
+            setMproudcts={setMproudcts}
+          ></Advertise>
+        ))}
+      </section>
       <section>
         <Future></Future>
       </section>

@@ -12,6 +12,7 @@ import MyBookings from "../Components/Dashboard/MyBookings/MyBookings";
 import Blog from "../Components/pages/Blog/Blog";
 import Users from "../Components/Dashboard/Users/Users";
 import Category from "../Components/pages/Category/Category";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 
 
@@ -57,7 +58,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <DashboardLayout></DashboardLayout>,
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
     children: [
       {
         path: '/dashboard',

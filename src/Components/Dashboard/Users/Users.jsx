@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import swal from "sweetalert";
 
 const Users = () => {
   const { data: users = [], refetch } = useQuery({
@@ -18,7 +19,11 @@ const handleSellerVerify = (id) => {
     .then((res) => res.json())
     .then((data) => {
       if (data.modifiedCount > 0) {
-        alert("seller verify successfully");
+         swal({
+           title: `Verified Successful`,
+           icon: "success",
+           button: "ok",
+         });
         refetch();
       }
     });
@@ -58,16 +63,26 @@ const handleSellerVerify = (id) => {
                   <th>{i + 1}</th>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
-                  <td>
-                    {user?.role !== "verifySeller" && (
+                  {user?.role !== "verifySeller" ? (
+                    <td>
                       <button
                         onClick={() => handleSellerVerify(user._id)}
-                        className="btn btn-sm btn-primary "
+                        className="btn btn-sm btn-warning "
                       >
-                        verify seller
+                        unverified
                       </button>
-                    )}
-                  </td>
+                    </td>
+                  ) : (
+                    <td>
+                      <button
+                        onClick={() => handleSellerVerify(user._id)}
+                        className="btn btn-sm btn-success "
+                      >
+                        verified
+                      </button>
+                    </td>
+                  )}
+
                   <td>
                     <button
                       onClick={() => handleDeleteUser(user._id)}

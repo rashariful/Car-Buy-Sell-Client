@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaBeer, FaCarAlt, FaCertificate } from "react-icons/fa";
+import { FaCarAlt, FaCertificate } from "react-icons/fa";
 
 const Future = () => {
     return (
