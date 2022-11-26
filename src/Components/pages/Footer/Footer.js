@@ -1,5 +1,5 @@
 import React from "react";
-import { FaEdgeLegacy } from "react-icons/fa";
+import { FaCarAlt, FaEdgeLegacy } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -16,7 +16,7 @@ const Footer = () => {
               >
                 <img className="w-20 h-auto rounded-md" src="https://www.logodesign.net/logo/hiker-on-mountain-top-6158ld.png?size=2&industry=travel-hotel" alt="" />
                
-                Explore the World
+                Used <FaCarAlt></FaCarAlt> Museum
               </a>
             </div>
 

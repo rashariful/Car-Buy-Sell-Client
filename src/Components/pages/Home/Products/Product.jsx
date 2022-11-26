@@ -10,6 +10,7 @@ const Product = ({ product, setMproudcts }) => {
     brand,
     location,
     time,
+    varifySeller,
   } = product;
 
   
@@ -37,19 +38,24 @@ const Product = ({ product, setMproudcts }) => {
             </div>
 
             <div class="flex flex-col items-end">
-              <span class="text-gray-600 lg:text-lg font-bold">${resalePrice}</span>
-              <span class="text-red-500 text-sm line-through">${originalPrice}</span>
+              <p>seller {varifySeller === false && <p>unverifyed</p> }</p>
+              <span class="text-gray-600 lg:text-lg font-bold">
+                ${resalePrice}
+              </span>
+              <span class="text-red-500 text-sm line-through">
+                ${originalPrice}
+              </span>
             </div>
           </div>
           <p>{description.slice(0, 50)}</p>
 
           <div className="card-actions justify-end">
             <label
-              onClick={() => setMproudcts (product)}
+              onClick={() => setMproudcts(product)}
               htmlFor="my-modal-3"
               className="btn btn-primary"
             >
-            Book Now
+              Book Now
             </label>
           </div>
         </div>

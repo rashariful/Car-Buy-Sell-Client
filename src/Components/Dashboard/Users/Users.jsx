@@ -11,18 +11,18 @@ const Users = () => {
     },
   });
 
-  const handleAdmin = (id) => {
-    fetch(`http://localhost:5000/users/admin/${id}`, {
-      method: "PUT",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount > 0) {
-          alert("admin successfully maked");
-          refetch();
-        }
-      });
-  };
+const handleSellerVerify = (id) => {
+  fetch(`http://localhost:5000/users/verify/${id}`, {
+    method: "PUT",
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.modifiedCount > 0) {
+        alert("seller verify successfully");
+        refetch();
+      }
+    });
+};
 
   const handleDeleteUser = (id) => {
     fetch(`http://localhost:5000/users/${id}`, {
@@ -59,12 +59,12 @@ const Users = () => {
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>
-                    {user?.role !== "admin" && (
+                    {user?.role !== "verifySeller" && (
                       <button
-                        onClick={() => handleAdmin(user._id)}
+                        onClick={() => handleSellerVerify(user._id)}
                         className="btn btn-sm btn-primary "
                       >
-                        Make admin
+                        verify seller
                       </button>
                     )}
                   </td>

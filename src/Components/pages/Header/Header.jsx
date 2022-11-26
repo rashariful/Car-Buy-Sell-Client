@@ -1,5 +1,6 @@
 import React from "react";
 import { useContext } from "react";
+import { FaCarAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Context/UserContext";
 
@@ -80,7 +81,7 @@ const Header = () => {
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost normal-case text-xl">
-          Used Car Museum
+          <span>Used</span> <FaCarAlt className="text-blue-500 mx-2"></FaCarAlt> <span>Museum</span>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">

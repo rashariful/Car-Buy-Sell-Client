@@ -3,11 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { FaUpload } from "react-icons/fa";
 import { useContext } from "react";
+import swal from "sweetalert";
 import { AuthContext } from "../../../Context/UserContext";
 
 const AddProducts = () => {
   const imgHotKey = "f6658319c0ecbf033082c3f56b5e6948";
   const {user} = useContext(AuthContext)
+  const email = user.email
+  const sellerName = user.displayName
   const navigate = useNavigate();
   const time = new Date()
   const {
@@ -33,6 +36,9 @@ const AddProducts = () => {
           
           const products = {
             title: data.title,
+            varifySeller: false,
+            email,
+            sellerName,
             phone: data.number,
             brand: data.brand,
             resalePrice: data.resalePrice,
@@ -58,6 +64,12 @@ const AddProducts = () => {
             .then((res) => res.json())
             .then((data) => {
               console.log(data);
+               swal({
+                 title: `Successful added ${products.title}`,
+                 icon: "success",
+                 button: "ok",
+               });
+               navigate("/dashboard/myproducts");
             });
         }
       });

@@ -1,25 +1,25 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../Context/UserContext';
 
 
 const MyProducts = () => {
+  const { user } = useContext(AuthContext);
 
+  const { data: products = [], refetch } = useQuery({
+    queryKey: ["products", user?.email],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/products?email=${user?.email}`
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
+  console.log(products);
 
-    const {
-      data: products = [],
-      isLoading,
-      refetch,
-    } = useQuery({
-      queryKey: ["products"],
-      queryFn: async () => {
-        const res = await fetch("http://localhost:5000/products");
-        const data = await res.json();
-        return data;
-      },
-    });
- console.log(products);
     const handleDelete = (id) => {
+      console.log(id);
       fetch(`http://localhost:5000/products/${id}`, {
         method: "DELETE",
       })
@@ -65,7 +65,7 @@ const MyProducts = () => {
                     <td>{product?.originalPrice}</td>
                     <td>
                       <button
-                        onClick={() => handleDelete(product._id)}
+                        onClick={() => handleDelete(product?._id)}
                         className="btn btn-sm"
                       >
                         Delete

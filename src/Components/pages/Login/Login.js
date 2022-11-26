@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { FaGithub } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
 import swal from 'sweetalert';
 import { AuthContext } from "../../../Context/UserContext";
+import useToken from "../../../hook/useToken";
 
 
 const Login = () => {
@@ -12,6 +12,7 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
 
   const {
+    user,
     error,
     setError,
     signInUser,
@@ -118,6 +119,8 @@ const Login = () => {
 
   }
 
+  const [token] = useToken(user)
+  console.log( 'login page',user);
 
 
   return (

@@ -16,7 +16,7 @@ const MyBookings = () => {
       return data;
     },
   });
-  console.log(bookings);
+  
 
   const handleDelete = (id) => {
     console.log(id);
@@ -33,7 +33,7 @@ const MyBookings = () => {
 
   return (
     <div className="w-[80%] mx-auto">
-      <h1 className="text-2xl font-bold my-10">My Appointment</h1>
+      <h1 className="text-2xl font-bold my-10">My Bookings</h1>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
