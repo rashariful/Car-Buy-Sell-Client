@@ -13,6 +13,7 @@ import Blog from "../Components/pages/Blog/Blog";
 import Users from "../Components/Dashboard/Users/Users";
 import Category from "../Components/pages/Category/Category";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Payment from "../Components/Dashboard/Payment/Payment";
 
 
 
@@ -30,17 +31,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/home/:brand",
-        element: <Home></Home>,
+        element: <PrivateRoute><Home></Home></PrivateRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brand}`)
 
       },
 
-      // {
-      //   path: "/category/:brand",
-      //   element: <Category></Category>,
-      //   // loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brand}`)
-
-      // },
       {
         path: "/blog",
         element: <Blog></Blog>
@@ -75,6 +70,12 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/bookings',
         element: <MyBookings></MyBookings>
+      },
+      {
+        path: '/dashboard/bookings/:id',
+        element: <Payment></Payment>,
+        loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
+
       },
       {
         path: '/dashboard/users',

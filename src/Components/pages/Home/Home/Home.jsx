@@ -19,7 +19,7 @@ const Home = () => {
         <Banner></Banner>
       </section>
       <section>
-        <div className="flex justify-center gap-5">
+        <div className="flex justify-center gap-5 mt-36">
           <Link to="/home/toyota">
             <div className=" flex items-center w-36 h-24 gap-3 border border-gray-300 py-3 px-4 rounded-md shadow-sm">
               <p className="font-semibold text-xl"> Toyota</p>{" "}
@@ -63,7 +63,7 @@ const Home = () => {
       </section>
       <BookingModal mProducts={mProducts}></BookingModal>
       <section>
-        <div className="flex flex-col text-center w-full mb-20">
+        <div className="flex flex-col text-center w-full mb-20 mt-36">
           <h2 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
             All the advertisement product post here
           </h2>
@@ -71,7 +71,7 @@ const Home = () => {
             You can add your products on this section.
           </p>
         </div>
-        
+
         {products.map((product) => (
           <Advertise
             product={product}

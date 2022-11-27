@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../../../Context/UserContext";
 
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
+  const id = useParams()
 
   const { data: bookings = [], refetch } = useQuery({
     queryKey: ["bookings", user?.email],
@@ -50,6 +52,12 @@ const MyBookings = () => {
                 <th>{i + 1}</th>
                 <td>{booking?.title}</td>
                 <td>{booking?.price}</td>
+                <td>
+                  {" "}
+                  <Link to={`/dashboard/bookings/${booking._id}`}>
+                    <button className="btn btn-sm">Pay Now</button>
+                  </Link>
+                </td>
 
                 <td>
                   <button

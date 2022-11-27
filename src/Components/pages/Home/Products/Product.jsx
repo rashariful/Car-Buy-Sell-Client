@@ -1,6 +1,8 @@
 import React from 'react';
+import { FaCheckCircle, FaRegTimesCircle } from 'react-icons/fa';
 
 const Product = ({ product, setMproudcts }) => {
+  console.log(product);
   const {
     img,
     title,
@@ -10,7 +12,9 @@ const Product = ({ product, setMproudcts }) => {
     brand,
     location,
     time,
+    useYear,
     varifySeller,
+    sellerName,
   } = product;
 
   
@@ -32,13 +36,22 @@ const Product = ({ product, setMproudcts }) => {
               </a>
               <span class="text-gray-500">{brand}</span>
               <span class="text-gray-500">{location}</span>
+              <span class="text-gray-500">{useYear}</span>
               <span class="text-gray-500">
                 Date:{time.slice(0, 10)} <br /> Time: {time.slice(11, 20)}
               </span>
             </div>
 
             <div class="flex flex-col items-end">
-              <p>seller {varifySeller === false && <p>unverifyed</p> }</p>
+              <div class="flex gap-2 items-end">
+                <small>{sellerName}</small>
+                {varifySeller === false ? (
+                  <FaRegTimesCircle className="text-red-600"></FaRegTimesCircle>
+                ) : (
+                  <FaCheckCircle className="text-success"></FaCheckCircle>
+                )}
+              </div>
+
               <span class="text-gray-600 lg:text-lg font-bold">
                 ${resalePrice}
               </span>
