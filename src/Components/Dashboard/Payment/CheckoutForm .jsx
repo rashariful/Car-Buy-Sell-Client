@@ -1,54 +1,102 @@
-import React, { useEffect, useState } from 'react';
-import { loadStripe } from "@stripe/stripe-js";
-import { CardElement,  useElements, useStripe } from "@stripe/react-stripe-js";
-import { async } from '@firebase/util';
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import React, { useEffect, useState } from "react";
 
+const CheckoutForm = ({ booking }) => {
+  console.log(booking);
+  const [cardError, setCardError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [processing, setProcessing] = useState(false);
+  const [transactionId, setTransactionId] = useState("");
+  const [clientSecret, setClientSecret] = useState("");
 
-const CheckoutForm = ({booking}) => {
-    const stripe = useStripe();
-     const [clientSecret, setClientSecret] = useState("");
-    const elements = useElements();
-    const {price} = booking
+  const stripe = useStripe();
+  const elements = useElements();
+  const { price, email, title, _id } = booking || {};
 
-    const handleSubmit = async (event) => {
-      event.preventDefault();
+  useEffect(() => {
+    // Create PaymentIntent as soon as the page loads
+    fetch("http://localhost:5000/create-payment-intent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ price }),
+    })
+      .then((res) => res.json())
+      .then((data) => setClientSecret(data.clientSecret));
+  }, [price]);
 
-      if (!stripe || !elements) {
-        return;
-      }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-      const card = elements.getElement(CardElement);
+    if (!stripe || !elements) {
+      return;
+    }
 
-      if (card == null) {
-        return;
-      }
+    const card = elements.getElement(CardElement);
+    if (card === null) {
+      return;
+    }
 
-      // Use your card Element with other Stripe.js APIs
-      const { error, paymentMethod } = await stripe.createPaymentMethod({
-        type: "card",
-        card,
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card,
+    });
+
+    if (error) {
+      console.log(error);
+      setCardError(error.message);
+    } else {
+      setCardError("");
+    }
+    setSuccess("");
+    setProcessing(true);
+    const { paymentIntent, error: confirmError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: title,
+            email: email,
+          },
+        },
       });
 
-      if (error) {
-        console.log("[error]", error);
-      } else {
-        console.log("[PaymentMethod]", paymentMethod);
-      }
-    };
+    if (confirmError) {
+      setCardError(confirmError.message);
+      return;
+    }
+    if (paymentIntent.status === "succeeded") {
+      console.log("card info", card);
+      // store payment info in the database
+      const booking = {
+        price,
+        transactionId: paymentIntent.id,
+        email,
+        bookingId: _id,
+      };
 
-    useEffect(() => {
-      // Create PaymentIntent as soon as the page loads
-      fetch("http://localhost:5000/create-payment-intent", {
+      fetch("http://localhost:5000/payments", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(booking),
       })
         .then((res) => res.json())
-        .then((data) => setClientSecret(data.clientSecret));
-    }, [price]);
+        .then((data) => {
+          console.log(data);
+          if (data.insertedId) {
+            setSuccess("Congrats! your payment completed");
+            setTransactionId(paymentIntent.id);
+          }
+        });
+    }
+    setProcessing(false);
+  };
 
-
-    return (
+  return (
+    <>
       <form onSubmit={handleSubmit}>
         <CardElement
           options={{
@@ -66,11 +114,26 @@ const CheckoutForm = ({booking}) => {
             },
           }}
         />
-        <button className='btn btn-sm mt-3' type="submit" disabled={!stripe}>
-          Pay
+        <button
+          className="btn btn-sm mt-4 btn-primary"
+          type="submit"
+          disabled={!stripe || !clientSecret || processing}
+        >
+          Pay Now
         </button>
       </form>
-    );
+      <p className="text-red-500">{cardError}</p>
+      {success && (
+        <div>
+          <p className="text-green-500">{success}</p>
+          <p>
+            Your transactionId:{" "}
+            <span className="font-bold">{transactionId}</span>
+          </p>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default CheckoutForm;
