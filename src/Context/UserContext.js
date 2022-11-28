@@ -30,8 +30,8 @@ const UserContext = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const updateUserInfo = (profile) => {
-    updateProfile(auth.currentUser, profile);
+  const updateUserInfo = (profile, role) => {
+    updateProfile(auth.currentUser, profile, role);
   };
 
   // 02 This is for register with google account

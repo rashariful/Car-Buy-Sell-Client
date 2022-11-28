@@ -24,6 +24,7 @@ const Register = () => {
     const form = event.target;
     const fullname = form.fullname.value;
     const photoURL = form.photourl.value;
+    const role = form.role.value;
     const email = form.email.value;
     const password = form.password.value;
 
@@ -33,7 +34,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         setUser(user)
-        saveUserInfo(fullname, email)
+        saveUserInfo(fullname, email, role)
         window.location.reload()
         console.log(user);
           swal({
@@ -42,7 +43,7 @@ const Register = () => {
               button: "ok",
           });
         setError("");
-        handleUpdateUserInfo(fullname, photoURL);
+        handleUpdateUserInfo(fullname, photoURL, role);
       })
       .catch((error) => {
         console.error(error);
@@ -57,10 +58,11 @@ const Register = () => {
   };
 
   // update name and photo url
-  const handleUpdateUserInfo = (fullname, photourl) => {
+  const handleUpdateUserInfo = (fullname, photourl, role) => {
     const profile = {
       displayName: fullname,
       photoURL: photourl,
+      role: role
     };
     updateUserInfo(profile)
       .then((result) => {
@@ -120,8 +122,8 @@ const Register = () => {
       });
   };
 
- const saveUserInfo = (name, email) =>{
-    const user = {name, email}
+ const saveUserInfo = (name, email, role) =>{
+    const user = {name, email, role}
 
     fetch('http://localhost:5000/users',{
       method: "POST",
@@ -165,8 +167,17 @@ const Register = () => {
                   className="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
                 />
               </div>
+
               <div>
-                <select className="select select-bordered w-full  bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2">
+                <label
+                  type="text"
+                  className="inline-block text-gray-800 text-sm sm:text-base mb-2"
+                >
+                  user role
+                </label>
+                <select 
+                name="role"
+                className="select select-bordered w-full  bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2">
                  
                   <option>Buyer</option>
                   <option>Seller</option>

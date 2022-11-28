@@ -1,8 +1,19 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { FaCheckCircle, FaRegTimesCircle } from 'react-icons/fa';
 
 const Product = ({ product, setMproudcts }) => {
-  console.log(product);
+
+  const { data: users = [], refetch } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/users");
+      const data = await res.json();
+      return data;
+    },
+  });
+  console.log(users.sellerStatus);
+
   const {
     img,
     title,
@@ -17,7 +28,7 @@ const Product = ({ product, setMproudcts }) => {
     sellerName,
   } = product;
 
-  
+
 
   return (
     <div>
@@ -45,11 +56,16 @@ const Product = ({ product, setMproudcts }) => {
             <div class="flex flex-col items-end">
               <div class="flex gap-2 items-end">
                 <small>{sellerName}</small>
-                {varifySeller === false ? (
-                  <FaRegTimesCircle className="text-red-600"></FaRegTimesCircle>
-                ) : (
-                  <FaCheckCircle className="text-success"></FaCheckCircle>
-                )}
+                {users.map((user, i) => {return (
+                
+                 
+                    user?.sellerStatus !== "verifySeller" ? (
+                    <FaCheckCircle className="text-success"></FaCheckCircle>) :
+                    (
+                    <FaRegTimesCircle className="text-red-600"></FaRegTimesCircle>
+                    )
+                 
+                ); } )}
               </div>
 
               <span class="text-gray-600 lg:text-lg font-bold">

@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import swal from "sweetalert";
+import Product from "../../pages/Home/Products/Product";
 
 const Users = () => {
+
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -11,6 +13,7 @@ const Users = () => {
       return data;
     },
   });
+console.log(users);
 
 const handleSellerVerify = (id) => {
   fetch(`http://localhost:5000/users/verify/${id}`, {
@@ -63,7 +66,7 @@ const handleSellerVerify = (id) => {
                   <th>{i + 1}</th>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
-                  {user?.role !== "verifySeller" ? (
+                  {user?.sellerStatus !== "verifySeller" ? (
                     <td>
                       <button
                         onClick={() => handleSellerVerify(user._id)}
