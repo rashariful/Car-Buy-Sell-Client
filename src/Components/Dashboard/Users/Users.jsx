@@ -13,7 +13,7 @@ const Users = () => {
       return data;
     },
   });
-console.log(users);
+
 
 const handleSellerVerify = (id) => {
   fetch(`http://localhost:5000/users/verify/${id}`, {

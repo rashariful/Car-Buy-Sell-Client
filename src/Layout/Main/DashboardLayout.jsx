@@ -1,12 +1,24 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { FaBoxOpen, FaCalendarAlt, FaCartPlus, FaHome, FaUserAlt, FaUserMd, FaUserPlus } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
 import Header from "../../Components/pages/Header/Header";
 
 import { AuthContext } from "../../Context/UserContext";
+import useAdmin from "../../hook/useAdmin";
+import useBuyer from "../../hook/useBuyer";
+import useSeller from "../../hook/useSeller";
 
 const DashboardLayout = () => {
     const { user } = useContext(AuthContext);
+    const [admin] = useAdmin(user);
+    const [seller] = useSeller(user);
+    const [buyer] = useBuyer(user);
+    
+
+
+
+
   return (
     <div>
       <Header></Header>
@@ -37,30 +49,41 @@ const DashboardLayout = () => {
                 <span class="ml-3">My Dashboard</span>
               </Link>
             </li>
-            <li className="hover:bg-primary rounded-md hover:text-gray-200">
-              <Link to="/dashboard/bookings">
-                <FaCalendarAlt className="w-6 h-6 text-gray-500"></FaCalendarAlt>
-                <span class="ml-3">My Orders</span>
-              </Link>
-            </li>
-            <li className="hover:bg-primary rounded-md hover:text-gray-200">
-              <Link to="/dashboard/users">
-                <FaUserAlt className="w-6 h-6 text-gray-500"></FaUserAlt>
-                <span class="ml-3">All Users</span>
-              </Link>
-            </li>
-            <li className="hover:bg-primary rounded-md hover:text-gray-200">
-              <Link to="/dashboard/addproducts">
-                <FaCartPlus className="w-6 h-6 text-gray-500"></FaCartPlus>
-                <span class="ml-3">Add Product</span>
-              </Link>
-            </li>
-            <li className="hover:bg-primary rounded-md hover:text-gray-200">
-              <Link to="/dashboard/myproducts">
-                <FaBoxOpen className="w-6 h-6 text-gray-500"></FaBoxOpen>
-                <span class="ml-3">My Products</span>
-              </Link>
-            </li>
+            {buyer && (
+              <li className="hover:bg-primary rounded-md hover:text-gray-200">
+                <Link to="/dashboard/bookings">
+                  <FaCalendarAlt className="w-6 h-6 text-gray-500"></FaCalendarAlt>
+                  <span class="ml-3">My Orders</span>
+                </Link>
+              </li>
+            )}
+
+            {admin && (
+              <li className="hover:bg-primary rounded-md hover:text-gray-200">
+                <Link to="/dashboard/users">
+                  <FaUserAlt className="w-6 h-6 text-gray-500"></FaUserAlt>
+                  <span class="ml-3">All Users</span>
+                </Link>
+              </li>
+            )}
+
+            {seller && (
+              <div>
+                <li className="hover:bg-primary rounded-md hover:text-gray-200">
+                  <Link to="/dashboard/addproducts">
+                    <FaCartPlus className="w-6 h-6 text-gray-500"></FaCartPlus>
+                    <span class="ml-3">Add Product</span>
+                  </Link>
+                </li>
+
+                <li className="hover:bg-primary rounded-md hover:text-gray-200">
+                  <Link to="/dashboard/myproducts">
+                    <FaBoxOpen className="w-6 h-6 text-gray-500"></FaBoxOpen>
+                    <span class="ml-3">My Products</span>
+                  </Link>
+                </li>
+              </div>
+            )}
           </ul>
         </div>
       </div>

@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Context/UserContext";
 
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
-  const id = useParams()
+
 
   const { data: bookings = [], refetch } = useQuery({
     queryKey: ["bookings", user?.email],
@@ -18,7 +18,6 @@ const MyBookings = () => {
       return data;
     },
   });
-  
 
   const handleDelete = (id) => {
     console.log(id);

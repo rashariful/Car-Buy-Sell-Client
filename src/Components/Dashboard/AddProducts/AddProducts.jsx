@@ -7,7 +7,7 @@ import swal from "sweetalert";
 import { AuthContext } from "../../../Context/UserContext";
 
 const AddProducts = () => {
-  const imgHotKey = "f6658319c0ecbf033082c3f56b5e6948";
+  const imgHostKey = process.env.REACT_APP_Imgbb_Key;
   const {user} = useContext(AuthContext)
   const email = user.email
   const sellerName = user.displayName
@@ -25,7 +25,7 @@ const AddProducts = () => {
     const image = data.img[0];
     const formData = new FormData();
     formData.append("image", image);
-    const url = `https://api.imgbb.com/1/upload?key=${imgHotKey}`;
+    const url = `https://api.imgbb.com/1/upload?key=${imgHostKey}`;
     fetch(url, {
       method: "POST",
       body: formData,

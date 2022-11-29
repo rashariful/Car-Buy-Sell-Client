@@ -14,7 +14,7 @@ const Footer = () => {
                 className="inline-flex items-center text-gray-100 text-xl md:text-2xl font-bold gap-2"
                 aria-label="logo"
               >
-                <img className="w-20 h-auto rounded-md" src="https://www.logodesign.net/logo/hiker-on-mountain-top-6158ld.png?size=2&industry=travel-hotel" alt="" />
+                
                
                 Used <FaCarAlt></FaCarAlt> Museum
               </a>
@@ -274,7 +274,7 @@ const Footer = () => {
         </div>
 
         <div className="text-gray-400 text-sm text-center border-t border-gray-800 py-8">
-          © 2022 - Present Explore the World. All rights reserved.
+          © 2022 - Present Used car museum. All rights reserved.
         </div>
       </footer>
     </div>

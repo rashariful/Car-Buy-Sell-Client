@@ -19,7 +19,15 @@ const Home = () => {
         <Banner></Banner>
       </section>
       <section>
-        <div className="flex justify-center gap-5 mt-36">
+        <div className="flex flex-col text-center w-full mt-36">
+          <h2 className="sm:text-3xl text-2xl capitalize font-medium title-font text-gray-900">
+           Let's find your dream car
+          </h2>
+          <p className=" text-gray-500 mt-3">
+            We revommend the very best and newest cars today, and also a friendly price for you.
+          </p>
+        </div>
+        <div className="flex justify-center gap-5 mt-10">
           <Link to="/home/toyota">
             <div className=" flex items-center w-36 h-24 gap-3 border border-gray-300 py-3 px-4 rounded-md shadow-sm">
               <p className="font-semibold text-xl"> Toyota</p>{" "}

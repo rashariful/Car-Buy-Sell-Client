@@ -117,7 +117,7 @@ const CheckoutForm = ({ booking }) => {
         <button
           className="btn btn-sm mt-4 btn-primary"
           type="submit"
-          disabled={!stripe || !clientSecret || processing}
+          
         >
           Pay Now
         </button>
