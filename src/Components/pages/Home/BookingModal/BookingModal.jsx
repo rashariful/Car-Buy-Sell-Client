@@ -1,59 +1,55 @@
-import React from 'react';
-import { useContext } from 'react';
-import { AuthContext } from '../../../../Context/UserContext';
+import React from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../../../Context/UserContext";
 import swal from "sweetalert";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 
 const BookingModal = ({ mProducts }) => {
-    const {user} = useContext(AuthContext)
-    const navigate = useNavigate()
-   
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  console.log(user?.displayName);
+  console.log(mProducts);
 
-   const handleSubmit = (e) => {
-     e.preventDefault();
-     const form = e.target;
-     const name = form.name.value;
-     const email = form.email.value;
-     const phone = form.phone.value;
-     const price = mProducts.resalePrice;
-     const title = mProducts.title
-     const description = form.description.value;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const phone = form.phone.value;
+    const price = mProducts.resalePrice;
+    const title = mProducts.title;
+    const description = form.description.value;
 
-
-     const booking = {
-       name,
-       email,
-       phone,
-       price,
-       title,
-       description,
-     };
-     console.log(booking);
-      fetch("http://localhost:5000/bookings", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(booking),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-
-          swal({
-            title: `${title} Booking Successful!`,
-            icon: "success",
-            button: "ok",
-          });
+    const booking = {
+      name,
+      email,
+      phone,
+      price,
+      title,
+      description,
+    };
+    console.log(booking);
+    fetch("https://server-nine-beta.vercel.app/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        swal({
+          title: `${title} Booking Successful!`,
+          icon: "success",
+          button: "ok",
         });
-
+      });
 
     //   refetch();
-      form.reset();
+    form.reset();
     //   setTreatment(null);
     navigate("/dashboard/bookings");
-
-   };
+  };
 
   return (
     <div>

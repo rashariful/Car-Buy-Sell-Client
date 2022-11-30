@@ -1,19 +1,24 @@
-import { useQuery } from '@tanstack/react-query';
-import React from 'react';
-import { FaCheckCircle, FaMapMarkerAlt, FaRegTimesCircle } from 'react-icons/fa';
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
+import { useContext } from "react";
+import {
+  FaCheckCircle,
+  FaMapMarkerAlt,
+  FaRegTimesCircle,
+} from "react-icons/fa";
+import { AuthContext } from "../../../../Context/UserContext";
 
 const Product = ({ product, setMproudcts }) => {
+  const { user } = useContext(AuthContext);
 
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch("https://server-nine-beta.vercel.app/users");
       const data = await res.json();
       return data;
     },
   });
-  
- 
 
   const {
     img,
@@ -29,8 +34,6 @@ const Product = ({ product, setMproudcts }) => {
     sellerName,
   } = product;
 
-
-
   return (
     <div>
       <div className="card w-96 bg-base-100 drop-shadow-md h-[90%]">
@@ -42,7 +45,7 @@ const Product = ({ product, setMproudcts }) => {
             <div className="flex flex-col">
               <a
                 href="#"
-                className="text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"
+                className="text-gray-800 capitalize hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"
               >
                 {title}
               </a>

@@ -14,6 +14,7 @@ import Users from "../Components/Dashboard/Users/Users";
 import Category from "../Components/pages/Category/Category";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Payment from "../Components/Dashboard/Payment/Payment";
+import Products from "../Components/pages/Home/Products/Products";
 
 
 
@@ -27,19 +28,21 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brand}`)
       },
+
       {
         path: "/home/:brand",
-        element: <PrivateRoute><Home></Home></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brand}`)
+        element: <PrivateRoute><Home></Home>,</PrivateRoute>
+      },
+      {
+        path: "/products",
+        element: <Products></Products>
 
       },
-
       {
         path: "/blog",
         element: <Blog></Blog>,
-     
+
       },
 
       {
@@ -75,11 +78,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/bookings/:id',
         element: <Payment></Payment>,
-        loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
-
+        loader: ({ params }) => fetch(`https://server-nine-beta.vercel.app/bookings/${params.id}`)
       },
       {
-        path: '/dashboard/users',
+        path: '/dashboard/users/:role',
         element: <Users></Users>
       },
     ]

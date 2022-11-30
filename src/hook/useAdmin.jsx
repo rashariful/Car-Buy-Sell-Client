@@ -6,16 +6,15 @@ const useAdmin = (user) => {
 
   useEffect(() => {
     const email = user?.email;
-    
+
     if (email) {
       axios
-        .get(`http://localhost:5000/user/admin/${email}`, {
+        .get(`https://server-nine-beta.vercel.app/user/admin/${email}`, {
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
         })
         .then((res) => {
-          console.log(`admin status`, res?.data);
           setAdmin(res?.data?.isAdmin);
         });
     }

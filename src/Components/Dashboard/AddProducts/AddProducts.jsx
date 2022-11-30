@@ -8,11 +8,11 @@ import { AuthContext } from "../../../Context/UserContext";
 
 const AddProducts = () => {
   const imgHostKey = process.env.REACT_APP_Imgbb_Key;
-  const {user} = useContext(AuthContext)
-  const email = user.email
-  const sellerName = user.displayName
+  const { user } = useContext(AuthContext);
+  const email = user.email;
+  const sellerName = user.displayName;
   const navigate = useNavigate();
-  const time = new Date()
+  const time = new Date();
   const {
     register,
     handleSubmit,
@@ -20,8 +20,6 @@ const AddProducts = () => {
   } = useForm();
 
   const handleLoginSubmit = (data) => {
-   
-
     const image = data.img[0];
     const formData = new FormData();
     formData.append("image", image);
@@ -33,7 +31,6 @@ const AddProducts = () => {
       .then((res) => res.json())
       .then((imgdata) => {
         if (imgdata.success) {
-          
           const products = {
             title: data.title,
             varifySeller: false,
@@ -54,7 +51,7 @@ const AddProducts = () => {
 
           console.log(products);
 
-          fetch("http://localhost:5000/products", {
+          fetch("https://server-nine-beta.vercel.app/products", {
             method: "POST",
             headers: {
               "CONTENT-TYPE": "application/json",
@@ -64,12 +61,12 @@ const AddProducts = () => {
             .then((res) => res.json())
             .then((data) => {
               console.log(data);
-               swal({
-                 title: `Successful added ${products.title}`,
-                 icon: "success",
-                 button: "ok",
-               });
-               navigate("/dashboard/myproducts");
+              swal({
+                title: `Successful added ${products.title}`,
+                icon: "success",
+                button: "ok",
+              });
+              navigate("/dashboard/myproducts");
             });
         }
       });

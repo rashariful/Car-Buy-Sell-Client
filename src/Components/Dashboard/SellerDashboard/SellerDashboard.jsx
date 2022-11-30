@@ -4,6 +4,7 @@ import { AuthContext } from "../../../Context/UserContext";
 
 const SellerDashboard = () => {
   const { user } = useContext(AuthContext);
+  console.log(user);
   return (
     <div>
       <section className="text-gray-600 body-font">
@@ -20,7 +21,7 @@ const SellerDashboard = () => {
               <div className="sm:w-1/3 text-center sm:pr-8 sm:py-8">
                 <div className="w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
                   <img
-                    src={user.photoURL}
+                    src={user?.photoURL}
                     className="w-20 h-20 rounded-full border border-2 border-primary"
                     alt=""
                   />

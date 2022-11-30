@@ -3,16 +3,14 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Context/UserContext";
 
-
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
-
 
   const { data: bookings = [], refetch } = useQuery({
     queryKey: ["bookings", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/bookings?email=${user?.email}`
+        `https://server-nine-beta.vercel.app/bookings?email=${user?.email}`
       );
       const data = await res.json();
       return data;
@@ -21,7 +19,7 @@ const MyBookings = () => {
 
   const handleDelete = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/bookings/${id}`, {
+    fetch(`https://server-nine-beta.vercel.app/bookings/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -42,7 +40,8 @@ const MyBookings = () => {
               <th>No</th>
               <th>title</th>
               <th>price</th>
-              <th>action</th>
+              <th>payment</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -52,12 +51,16 @@ const MyBookings = () => {
                 <td>{booking?.title}</td>
                 <td>{booking?.price}</td>
                 <td>
-                  {" "}
-                  <Link to={`/dashboard/bookings/${booking._id}`}>
-                    <button className="btn btn-sm">Pay Now</button>
-                  </Link>
+                  {booking.price && !booking.paid && (
+                    <Link to={`/dashboard/bookings/${booking._id}`}>
+                      <button className="btn btn-primary btn-sm">Pay Now</button>
+                    </Link>
+                  )}
+                  {booking.price && booking.paid && (
+                    <button className="btn btn-success btn-sm">Paid</button>
+                  )}
                 </td>
-
+               
                 <td>
                   <button
                     className="btn btn-sm"

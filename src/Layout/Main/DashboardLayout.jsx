@@ -59,12 +59,20 @@ const DashboardLayout = () => {
             )}
 
             {admin && (
-              <li className="hover:bg-primary rounded-md hover:text-gray-200">
-                <Link to="/dashboard/users">
-                  <FaUserAlt className="w-6 h-6 text-gray-500"></FaUserAlt>
-                  <span class="ml-3">All Users</span>
-                </Link>
-              </li>
+              <>
+                <li className="hover:bg-primary rounded-md hover:text-gray-200">
+                  <Link to="/dashboard/users/seller">
+                    <FaUserAlt className="w-6 h-6 text-gray-500"></FaUserAlt>
+                    <span class="ml-3">seller</span>
+                  </Link>
+                </li>
+                <li className="hover:bg-primary rounded-md hover:text-gray-200">
+                  <Link to="/dashboard/users/buyer">
+                    <FaUserAlt className="w-6 h-6 text-gray-500"></FaUserAlt>
+                    <span class="ml-3">buyer</span>
+                  </Link>
+                </li>
+              </>
             )}
 
             {seller && (

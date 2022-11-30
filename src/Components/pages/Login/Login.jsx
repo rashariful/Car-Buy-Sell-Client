@@ -29,7 +29,7 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    form.reset();
+    // form.reset();
 
     signInUser(email, password)
       .then((result) => {
@@ -107,11 +107,11 @@ const Login = () => {
     navigate(from, { replace: true });
   };
 
-// save user info to mongoDB
+  // save user info to mongoDB
   const saveUserInfo = (name, email, role) => {
     const user = { name, email, role: "buyer" };
 
-    fetch("http://localhost:5000/users", {
+    fetch("https://server-nine-beta.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -9,13 +9,12 @@ const useSeller = (user) => {
 
     if (email) {
       axios
-        .get(`http://localhost:5000/user/seller/${email}`, {
+        .get(`https://server-nine-beta.vercel.app/user/seller/${email}`, {
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
         })
         .then((res) => {
-          console.log(`seller status`, res?.data);
           setSeller(res?.data?.isSeller);
         });
     }

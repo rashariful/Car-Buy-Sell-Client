@@ -6,16 +6,15 @@ const useBuyer = (user) => {
 
   useEffect(() => {
     const email = user?.email;
-   
+
     if (email) {
       axios
-        .get(`http://localhost:5000/user/buyer/${email}`, {
+        .get(`https://server-nine-beta.vercel.app/user/buyer/${email}`, {
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
         })
         .then((res) => {
-          console.log(`buyer status`, res?.data);
           setBuyer(res?.data?.isBuyer);
         });
     }

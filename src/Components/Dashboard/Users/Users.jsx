@@ -1,39 +1,50 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { Link, useParams } from "react-router-dom";
 import swal from "sweetalert";
-
+import Loader from "../../pages/Loader/Loader";
 
 const Users = () => {
+  const params = useParams();
 
-  const { data: users = [], refetch } = useQuery({
-    queryKey: ["users"],
+  const {
+    data: users = [],
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["users", params],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch(
+        `https://server-nine-beta.vercel.app/user/${params.role}`
+      );
       const data = await res.json();
       return data;
     },
   });
 
+  if (isLoading) {
+    return <Loader></Loader>;
+  }
 
-const handleSellerVerify = (id) => {
-  fetch(`http://localhost:5000/users/verify/${id}`, {
-    method: "PUT",
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.modifiedCount > 0) {
-         swal({
-           title: `Verified Successful`,
-           icon: "success",
-           button: "ok",
-         });
-        refetch();
-      }
-    });
-};
+  const handleSellerVerify = (id) => {
+    fetch(`https://server-nine-beta.vercel.app/users/verify/${id}`, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          swal({
+            title: `Verified Successful`,
+            icon: "success",
+            button: "ok",
+          });
+          refetch();
+        }
+      });
+  };
 
   const handleDeleteUser = (id) => {
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://server-nine-beta.vercel.app/users/${id}`, {
       method: "delete",
     })
       .then((res) => res.json())
@@ -56,7 +67,7 @@ const handleSellerVerify = (id) => {
                 <th></th>
                 <th>User Name</th>
                 <th>Email</th>
-                <th>Admin</th>
+                <th>actions</th>
                 <th>Delete</th>
               </tr>
             </thead>
