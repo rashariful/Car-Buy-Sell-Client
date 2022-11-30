@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Context/UserContext';
+import swal from "sweetalert";
+
 
 
 const MyProducts = () => {
@@ -16,7 +18,7 @@ const MyProducts = () => {
       return data;
     },
   });
-  console.log(products);
+
 
     const handleDelete = (id) => {
       console.log(id);
@@ -31,6 +33,26 @@ const MyProducts = () => {
         });
     };
 
+
+
+const handleBoost = (id) => {
+  console.log(id);
+  fetch(`http://localhost:5000/products/boost/${id}`, {
+    method: "PUT",
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.modifiedCount > 0) {
+        swal({
+          title: `boost Successful ${data.title}`,
+          icon: "success",
+          button: "ok",
+        });
+        refetch();
+      }
+    });
+};
+
     return (
       <div>
         <div className="w-[80%] mx-auto">
@@ -43,8 +65,8 @@ const MyProducts = () => {
                   <th>Photo</th>
                   <th>Product Name</th>
                   <th>brand Name</th>
-                  <th>condition</th>
                   <th>price</th>
+                  <th>condition</th>
                   <th>action</th>
                 </tr>
               </thead>
@@ -61,8 +83,23 @@ const MyProducts = () => {
                     </td>
                     <td>{product?.title}</td>
                     <td>{product?.brand}</td>
-                    <td>{product?.condition}</td>
                     <td>{product?.originalPrice}</td>
+                    {product?.boostStatus !== "boost" ? (
+                      <td>
+                        <button
+                          onClick={() => handleBoost(product._id)}
+                          className="btn btn-sm btn-warning "
+                        >
+                          Boost
+                        </button>
+                      </td>
+                    ) : (
+                      <td>
+                        <button className="btn btn-sm btn-success ">
+                          Boosted
+                        </button>
+                      </td>
+                    )}
                     <td>
                       <button
                         onClick={() => handleDelete(product?._id)}
@@ -71,7 +108,6 @@ const MyProducts = () => {
                         Delete
                       </button>
                     </td>
-
                   </tr>
                 ))}
               </tbody>

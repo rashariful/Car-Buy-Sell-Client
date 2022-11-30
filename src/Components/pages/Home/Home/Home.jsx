@@ -6,9 +6,13 @@ import Future from "../Future/Future";
 import Product from "../Products/Product";
 import { FaCar } from "react-icons/fa";
 import Advertise from "../Advertise/Advertise";
+import { useEffect } from "react";
 
 const Home = () => {
   const [mProducts, setMproudcts] = useState([]);
+  const [boost, setBoost] = useState([])
+
+
 
   const products = useLoaderData();
 

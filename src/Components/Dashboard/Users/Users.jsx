@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import swal from "sweetalert";
-import Product from "../../pages/Home/Products/Product";
+
 
 const Users = () => {
 
