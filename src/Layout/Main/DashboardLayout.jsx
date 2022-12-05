@@ -1,6 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
-import { FaBoxOpen, FaCalendarAlt, FaCartPlus, FaHome, FaUserAlt, FaUserMd, FaUserPlus } from "react-icons/fa";
+import { FaBoxOpen, FaCalendarAlt, FaCartPlus, FaHome, FaUserAlt, } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
 import Header from "../../Components/pages/Header/Header";
 
