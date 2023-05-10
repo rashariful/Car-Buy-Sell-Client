@@ -32,7 +32,7 @@ const router = createBrowserRouter([
 
       {
         path: "/home/:brand",
-        element: <PrivateRoute><Home></Home>,</PrivateRoute>
+        element: <Home></Home>,
       },
       {
         path: "/products",
@@ -55,6 +55,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  
   {
     path: '/dashboard',
     element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
@@ -78,7 +79,7 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/bookings/:id',
         element: <Payment></Payment>,
-        loader: ({ params }) => fetch(`https://server-nine-beta.vercel.app/bookings/${params.id}`)
+        loader: ({ params }) => fetch(`${process.env.REACT_APP_ROOT}/bookings/${params.id}`)
       },
       {
         path: '/dashboard/users/:role',

@@ -12,7 +12,7 @@ const Products = ({ setMproudcts, mProducts }) => {
     queryKey: ["bookings", params],
     queryFn: async () => {
       const res = await fetch(
-        `https://server-nine-beta.vercel.app/products/${params.brand}`
+        `${process.env.REACT_APP_ROOT}/products/${params.brand}`
       );
       const data = await res.json();
       return data;

@@ -10,7 +10,7 @@ const MyBookings = () => {
     queryKey: ["bookings", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `https://server-nine-beta.vercel.app/bookings?email=${user?.email}`
+        `${process.env.REACT_APP_ROOT}/bookings?email=${user?.email}`
       );
       const data = await res.json();
       return data;
@@ -19,7 +19,7 @@ const MyBookings = () => {
 
   const handleDelete = (id) => {
     console.log(id);
-    fetch(`https://server-nine-beta.vercel.app/bookings/${id}`, {
+    fetch(`${process.env.REACT_APP_ROOT}/bookings/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

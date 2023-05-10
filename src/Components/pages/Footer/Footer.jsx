@@ -1,4 +1,5 @@
 import React from "react";
+import logo_footer from "../../../../src/assets/img/logo_footer.png"
 import { FaCarAlt, FaEdgeLegacy } from "react-icons/fa";
 
 const Footer = () => {
@@ -16,7 +17,7 @@ const Footer = () => {
               >
                 
                
-                Used <FaCarAlt></FaCarAlt> Museum
+                <img src={logo_footer} className="w-36 h-auto z-50"  alt="buy/sell/car logo" />
               </a>
             </div>
 
@@ -274,7 +275,7 @@ const Footer = () => {
         </div>
 
         <div className="text-gray-400 text-sm text-center border-t border-gray-800 py-8">
-          © 2022 - Present Used car museum. All rights reserved.
+          © 2022 - Present Car Buy Sell. All rights reserved.
         </div>
       </footer>
     </div>

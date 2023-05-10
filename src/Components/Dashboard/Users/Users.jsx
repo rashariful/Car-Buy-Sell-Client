@@ -15,7 +15,7 @@ const Users = () => {
     queryKey: ["users", params],
     queryFn: async () => {
       const res = await fetch(
-        `https://server-nine-beta.vercel.app/user/${params.role}`
+        `${process.env.REACT_APP_ROOT}/user/${params.role}`
       );
       const data = await res.json();
       return data;
@@ -27,7 +27,7 @@ const Users = () => {
   }
 
   const handleSellerVerify = (id) => {
-    fetch(`https://server-nine-beta.vercel.app/users/verify/${id}`, {
+    fetch(`${process.env.REACT_APP_ROOT}/users/verify/${id}`, {
       method: "PUT",
     })
       .then((res) => res.json())
@@ -44,7 +44,7 @@ const Users = () => {
   };
 
   const handleDeleteUser = (id) => {
-    fetch(`https://server-nine-beta.vercel.app/users/${id}`, {
+    fetch(`${process.env.REACT_APP_ROOT}/users/${id}`, {
       method: "delete",
     })
       .then((res) => res.json())

@@ -45,14 +45,14 @@ const DashboardLayout = () => {
             <li className="hover:bg-primary rounded-md hover:text-gray-200">
               <Link to="/dashboard">
                 <FaHome className="w-6 h-6 text-gray-500"></FaHome>
-                <span class="ml-3">My Dashboard</span>
+                <span className="ml-3">My Dashboard</span>
               </Link>
             </li>
             {buyer && (
               <li className="hover:bg-primary rounded-md hover:text-gray-200">
                 <Link to="/dashboard/bookings">
                   <FaCalendarAlt className="w-6 h-6 text-gray-500"></FaCalendarAlt>
-                  <span class="ml-3">My Orders</span>
+                  <span className="ml-3">My Orders</span>
                 </Link>
               </li>
             )}
@@ -62,13 +62,13 @@ const DashboardLayout = () => {
                 <li className="hover:bg-primary rounded-md hover:text-gray-200">
                   <Link to="/dashboard/users/seller">
                     <FaUserAlt className="w-6 h-6 text-gray-500"></FaUserAlt>
-                    <span class="ml-3">seller</span>
+                    <span className="ml-3">seller</span>
                   </Link>
                 </li>
                 <li className="hover:bg-primary rounded-md hover:text-gray-200">
                   <Link to="/dashboard/users/buyer">
                     <FaUserAlt className="w-6 h-6 text-gray-500"></FaUserAlt>
-                    <span class="ml-3">buyer</span>
+                    <span className="ml-3">buyer</span>
                   </Link>
                 </li>
               </>
@@ -79,14 +79,14 @@ const DashboardLayout = () => {
                 <li className="hover:bg-primary rounded-md hover:text-gray-200">
                   <Link to="/dashboard/addproducts">
                     <FaCartPlus className="w-6 h-6 text-gray-500"></FaCartPlus>
-                    <span class="ml-3">Add Product</span>
+                    <span className="ml-3">Add Product</span>
                   </Link>
                 </li>
 
                 <li className="hover:bg-primary rounded-md hover:text-gray-200">
                   <Link to="/dashboard/myproducts">
                     <FaBoxOpen className="w-6 h-6 text-gray-500"></FaBoxOpen>
-                    <span class="ml-3">My Products</span>
+                    <span className="ml-3">My Products</span>
                   </Link>
                 </li>
               </div>

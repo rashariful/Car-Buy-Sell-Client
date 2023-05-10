@@ -29,7 +29,7 @@ const BookingModal = ({ mProducts }) => {
       description,
     };
     console.log(booking);
-    fetch("https://server-nine-beta.vercel.app/bookings", {
+    fetch(`${process.env.REACT_APP_ROOT}/bookings`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

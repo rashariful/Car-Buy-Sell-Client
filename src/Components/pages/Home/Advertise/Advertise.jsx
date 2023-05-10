@@ -76,7 +76,7 @@ const Advertise = ({ product, setMproudcts }) => {
           <label
             onClick={() => setMproudcts(product)}
             htmlFor="my-modal-3"
-            className="btn btn-primary w-full"
+            className="btn bg-rose-500 border-none hover:bg-rose-600 w-full"
           >
             Book Now
           </label>

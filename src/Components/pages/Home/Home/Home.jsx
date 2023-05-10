@@ -8,6 +8,9 @@ import Advertise from "../Advertise/Advertise";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Products from "../Products/Products";
+import HotCategory from "../HotCategory/HotCategory";
+import Collection from "../Collection/Collection";
+import NewsLetter from "../NewsLetter/NewsLetter";
 
 const Home = () => {
   const [mProducts, setMproudcts] = useState([]);
@@ -15,7 +18,7 @@ const Home = () => {
   const params = useParams();
 
   useEffect(() => {
-    fetch(`https://server-nine-beta.vercel.app/product/boost`)
+    fetch(`${process.env.REACT_APP_ROOT}/product/boost`)
       .then((res) => res.json())
       .then((data) => setBoost(data));
   }, []);
@@ -39,6 +42,10 @@ const Home = () => {
     <div className="max-w-screen-xl mx-auto">
       <section>
         <Banner></Banner>
+      </section>
+
+      <section>
+        <HotCategory/>
       </section>
 
       <section>
@@ -108,9 +115,11 @@ const Home = () => {
           ))}
         </div>
       </section>
+      <section><Collection/></section>
       <section>
         <Future></Future>
       </section>
+      <section> <NewsLetter/> </section>
     </div>
   );
 };

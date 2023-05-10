@@ -1,18 +1,17 @@
 import React from "react";
 import { useContext } from "react";
 import { FaCarAlt } from "react-icons/fa";
+import logo from "../../../../src/assets/img/logo.png"
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Context/UserContext";
 
 const Header = () => {
   const { user, logoutUser } = useContext(AuthContext);
+  
   const menuItems = (
     <React.Fragment>
       <li>
         <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/">Shop Dream</Link>
       </li>
       <li>
         <Link to="/">About</Link>
@@ -26,7 +25,7 @@ const Header = () => {
   );
 
   return (
-    <div className="navbar flex justify-between max-w-screen-xl mx-auto">
+    <div className="navbar sticky top-0 z-50 shadow-md flex justify-between drop-shadow-sm bg-gray-100 border border-b mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -75,13 +74,13 @@ const Header = () => {
                   </ul>
                 </div>
               ) : (
-                <Link to="/login">Login</Link>
+                <Link to="/login" className="bg-rose-500 text-white rounded-md font-semibold">Login</Link>
               )}
             </li>
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
-          <span>Used</span> <FaCarAlt className="text-blue-500 mx-2"></FaCarAlt> <span>Museum</span>
+        <Link to="/" className="">
+           <img src={logo} className="w-36 h-auto z-50"  alt="buy/sell/car logo" />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -108,7 +107,7 @@ const Header = () => {
                 </ul>
               </div>
             ) : (
-              <Link to="/login">Login</Link>
+              <Link to="/login" className="bg-rose-500 text-white rounded-md font-semibold">Login</Link>
             )}
           </li>
         </ul>

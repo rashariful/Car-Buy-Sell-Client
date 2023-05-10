@@ -14,16 +14,16 @@ const Payment = () => {
   return (
     <section className="text-gray-600 body-font relative">
       <div>
-        <div class="bg-white py-6 sm:py-8 lg:py-12">
-          <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
-            <div class="mb-10 md:mb-16">
-              <h2 class="text-blue-600 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">
+        <div className="bg-white py-6 sm:py-8 lg:py-12">
+          <div className="max-w-screen-xl px-4 md:px-8 mx-auto">
+            <div className="mb-10 md:mb-16">
+              <h2 className="text-blue-600 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">
                 Checkout form
               </h2>
             </div>
 
-            <div class="w-[50%] mx-auto">
-              <div class="flex flex-col md:flex-row items-center border rounded-lg overflow-hidden">
+            <div className="w-[50%] mx-auto">
+              <div className="flex flex-col md:flex-row items-center border rounded-lg overflow-hidden">
                 <div className="shadow-2xl w-full">
                   <div className="w-96 mx-auto my-5">
                     <h2 className="text-gray-500 text-xl mb-2 text-left mb-10">

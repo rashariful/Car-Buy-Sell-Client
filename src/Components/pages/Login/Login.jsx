@@ -3,7 +3,7 @@ import { FaFacebook, FaGithub } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { AuthContext } from "../../../Context/UserContext";
-import imgLogin from "../../../assets/img/login.jpg";
+
 import useToken from "../../../hook/useToken";
 
 const Login = () => {
@@ -111,7 +111,7 @@ const Login = () => {
   const saveUserInfo = (name, email, role) => {
     const user = { name, email, role: "buyer" };
 
-    fetch("https://server-nine-beta.vercel.app/users", {
+    fetch(`${process.env.REACT_APP_ROOT}/users`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -271,7 +271,7 @@ const Login = () => {
                   />
                 </div>
 
-                <button className="btn btn-primary w-full">Log in</button>
+                <button className="btn bg-rose-500 border-none hover:bg-rose-600 w-full">Log in</button>
               </div>
 
               <div className="flex justify-center items-center bg-gray-100 p-4">

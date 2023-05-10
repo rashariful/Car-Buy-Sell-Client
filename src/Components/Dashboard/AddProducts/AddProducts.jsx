@@ -51,7 +51,7 @@ const AddProducts = () => {
 
           console.log(products);
 
-          fetch("https://server-nine-beta.vercel.app/products", {
+          fetch(`${process.env.REACT_APP_ROOT}/products`, {
             method: "POST",
             headers: {
               "CONTENT-TYPE": "application/json",
@@ -320,15 +320,15 @@ const AddProducts = () => {
               <div>
                 {/* here start */}
 
-                <div class="flex items-center justify-center w-full">
+                <div className="flex items-center justify-center w-full">
                   <label
                     for="dropzone-file"
-                    class="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                    className="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                   >
-                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
                       <svg
                         aria-hidden="true"
-                        class="w-10 h-10 mb-3 text-gray-400"
+                        className="w-10 h-10 mb-3 text-gray-400"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -336,11 +336,11 @@ const AddProducts = () => {
                       >
                         <FaUpload></FaUpload>
                       </svg>
-                      <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                        <span class="font-semibold">Click to upload</span> or
+                      <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                        <span className="font-semibold">Click to upload</span> or
                         drag and drop
                       </p>
-                      <p class="text-xs text-gray-500 dark:text-gray-400">
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
                         SVG, PNG, JPG or GIF (MAX. 800x400px)
                       </p>
                     </div>

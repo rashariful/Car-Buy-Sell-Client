@@ -127,7 +127,7 @@ const Register = () => {
   const saveUserInfo = (name, email, role) => {
     const user = { name, email, role }
 
-    fetch('https://server-nine-beta.vercel.app/users', {
+    fetch(`${process.env.REACT_APP_ROOT}/users`, {
       method: "POST",
       headers: {
         'content-type': 'application/json'
@@ -280,7 +280,7 @@ const Register = () => {
                   />
                 </div>
 
-                <button className="btn btn-primary w-full">Register Now</button>
+                <button className="btn bg-rose-500 border-none hover:bg-rose-600 w-full">Register Now</button>
 
                 {/* <div className="flex justify-center items-center relative">
                   <span className="h-px bg-gray-300 absolute inset-x-0"></span>
