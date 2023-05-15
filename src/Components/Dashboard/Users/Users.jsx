@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import swal from "sweetalert";
 import Loader from "../../pages/Loader/Loader";
 
@@ -21,6 +21,7 @@ const Users = () => {
       return data;
     },
   });
+
 
   if (isLoading) {
     return <Loader></Loader>;
@@ -59,7 +60,7 @@ const Users = () => {
   return (
     <div>
       <div className="w-[80%] mx-auto">
-        <h1 className="text-2xl font-bold my-10">All Users here</h1>
+        <h1 className="text-2xl font-bold my-10">All buyers here</h1>
         <div className="overflow-x-auto">
           <table className="table w-full">
             <thead>

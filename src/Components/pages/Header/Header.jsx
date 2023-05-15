@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { FaCarAlt } from "react-icons/fa";
 import logo from "../../../../src/assets/img/logo.png"
@@ -7,7 +7,15 @@ import { AuthContext } from "../../../Context/UserContext";
 
 const Header = () => {
   const { user, logoutUser } = useContext(AuthContext);
-  
+  const [navbar, setNavbar] = useState(false)
+
+  const changeNavbar = ()=>{
+ if (window.scrollY >= 80) {
+  setNavbar(true)
+ } else {
+  setNavbar(false)
+ }
+  } 
   const menuItems = (
     <React.Fragment>
       <li>
@@ -23,10 +31,10 @@ const Header = () => {
       <li></li>
     </React.Fragment>
   );
-
+window.addEventListener("scroll", changeNavbar)
   return (
-    <div className="navbar sticky top-0 z-50 shadow-md flex justify-between drop-shadow-sm bg-white border border-b mx-auto">
-      <div className="navbar-start">
+    <div className={` sticky top-0 z-50 flex justify-between drop-shadow-sm bg-white border border-b mx-auto`}>
+      <div className='navbar-start'>
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
@@ -80,7 +88,7 @@ const Header = () => {
           </ul>
         </div>
         <Link to="/" className="">
-           <img src={logo} className="w-36 h-auto z-50"  alt="buy/sell/car logo" />
+           <img src={logo} className="w-36 h-auto z-50 ml-10"  alt="buy/sell/car logo" />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -91,7 +99,14 @@ const Header = () => {
               <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
-                    <img src={user?.photoURL} />
+                  {user.photoURL ?
+            <img
+            src={user?.photoURL}
+            className="w-20 h-20 rounded-full mx-auto border-2 border-slate-300 shadow-lg"
+            alt=""
+          /> :
+          <img src="https://www.emmegi.co.uk/wp-content/uploads/2019/01/User-Icon.jpg" className="w-20 h-20 rounded-full mx-auto border-2 border-slate-300 shadow-lg" alt="" /> 
+           }
                   </div>
                 </label>
                 <ul
@@ -107,7 +122,7 @@ const Header = () => {
                 </ul>
               </div>
             ) : (
-              <Link to="/login" className="bg-rose-500 text-white rounded-md font-semibold">Login</Link>
+              <Link to="/login" className="btn border-none bg-rose-500 hover:bg-rose-600 mt-6 mr-10 text-white rounded-md font-semibold">Login</Link>
             )}
           </li>
         </ul>

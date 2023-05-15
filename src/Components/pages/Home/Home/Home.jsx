@@ -43,7 +43,7 @@ const Home = () => {
       <section>
         <Banner></Banner>
       </section>
-
+      
       <section>
         <HotCategory/>
       </section>

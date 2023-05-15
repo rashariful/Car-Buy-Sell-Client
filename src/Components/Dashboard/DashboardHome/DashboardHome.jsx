@@ -5,6 +5,7 @@ import useAdmin from '../../../hook/useAdmin';
 import useBuyer from '../../../hook/useBuyer';
 import useSeller from '../../../hook/useSeller';
 import SellerDashboard from '../SellerDashboard/SellerDashboard';
+import AdminDashboard from '../AdminDashboard/AdminDashboard';
 
 const DashboardHome = () => {
     const {user} = useContext(AuthContext)
@@ -12,9 +13,9 @@ const DashboardHome = () => {
     const [buyer] = useBuyer(user)
     const [seller] = useSeller(user)
     return (
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="">
         {admin && (
-          <h2 className="text-5xl font-bold text-primary">Admin dashboard</h2>
+         <AdminDashboard/>
         )}
         {seller && (
          <SellerDashboard></SellerDashboard>
