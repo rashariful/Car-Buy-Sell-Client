@@ -38,7 +38,7 @@ console.log(sellers)
         Admin dashboard updating...
       </h2>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
-        <div className="border py-5 px-10 bg-white rounded-lg shadow-md hover:skal-75 ">
+        <div className="border py-5 px-10 flex flex-col items-center bg-white rounded-lg shadow-md hover:skal-75 ">
           <div className="flex items-center justify-center border border-slate-500 rounded-full w-14 h-14">
             <FcShop className="w-8 h-8 text-slate-500"></FcShop>
           </div>
@@ -46,7 +46,7 @@ console.log(sellers)
           <p className="text-2xl font-bold mt-5 mb-2">{products?.length}</p>
           <p className="text-gray-500">Total products</p>
         </div>
-        <div className="border py-5 px-10 bg-white rounded-lg shadow-md hover:skal-75 ">
+        <div className="border py-5 px-10 flex flex-col items-center bg-white rounded-lg shadow-md hover:skal-75 ">
           <div className="flex items-center justify-center border border-slate-500 rounded-full w-14 h-14">
             <FcBusinessman className="w-8 h-8 text-slate-500"></FcBusinessman>
           </div>
@@ -54,7 +54,7 @@ console.log(sellers)
           <p className="text-2xl font-bold mt-5 mb-2">{sellers?.length}</p>
           <p className="text-gray-500">Total seller</p>
         </div>
-        <div className="border py-5 px-10 bg-white rounded-lg shadow-md hover:skal-75 ">
+        <div className="border py-5 px-10 flex flex-col items-center bg-white rounded-lg shadow-md hover:skal-75 ">
           <div className="flex items-center justify-center border border-slate-500 rounded-full w-14 h-14">
             <FcBusinesswoman className="w-8 h-8 text-slate-500"></FcBusinesswoman>
           </div>
@@ -62,7 +62,7 @@ console.log(sellers)
           <p className="text-2xl font-bold mt-5 mb-2">{users?.length}</p>
           <p className="text-gray-500">Total buyer</p>
         </div>
-        <div className="border py-5 px-10 bg-white rounded-lg shadow-md hover:skal-75 ">
+        <div className="border py-5 px-10 flex flex-col items-center bg-white rounded-lg shadow-md hover:skal-75 ">
           <div className="flex items-center justify-center border border-slate-500 rounded-full w-14 h-14">
             <FiShoppingCart className="w-8 h-8 text-slate-500"></FiShoppingCart>
           </div>
